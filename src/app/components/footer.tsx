@@ -63,7 +63,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-cyan-400/20 py-4 text-center text-gray-200 text-sm relative z-10">
-        ©2025 {new Date().getFullYear()} Chandrakiran · All Rights Reserved · Made with ❤️
+        © {new Date().getFullYear()} Chandrakiran · All Rights Reserved · Made with ❤️
       </div>
     </footer>
   );
