@@ -122,7 +122,7 @@ const ProductDesign = () => {
         <div className="flex justify-center mt-10">
           <button
             onClick={() => setShowMore(!showMore)}
-            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer"
           >
             {showMore ? "Show Less Designs" : "Show More Designs"}
           </button>
