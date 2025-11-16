@@ -1,8 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState } from "react"; // 1. Import useState
 import Image from "next/image";
+import Link from "next/link";
+import AnimatedLoader from "@/app/components/AnimatedLoader"; // 2. Import your loader
 
+// Horizontal (landscape) posters
 const HorizontalDesigns = [
+  // ... your design objects are here ...
   {
     image: "/Designs/ParadiseCollections.png",
     title: "Paradise Collections Poster",
@@ -47,70 +51,15 @@ const HorizontalDesigns = [
   },
 ];
 
-// 👇 Vertical (portrait) posters (780x1200)
-const VerticalDesigns = [
-  {
-    image: "/Designs/int1.jpg",
-    title: "Online Hotel Booking Poster",
-    description: "Modern vertical design for hotel booking promotion.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int2.jpg",
-    title: "Elegant Home Interior Poster",
-    description: "Sleek vertical layout for interior design services.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int3.jpg",
-    title: "Fruit Collection Poster",
-    description: "Vibrant vertical design showcasing fresh fruit collection.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int4.jpg",
-    title: "Interior Design Ad Poster",
-    description: "Stylish vertical layout for interior design services.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int5.jpg",
-    title: "Interior Design Promotion Poster",
-    description: "Modern vertical design for interior design promotion.",
-    tech: "Figma",
-  },
-
-  {
-    image: "/Designs/int6.jpg",
-    title: "Jwelry Collection Poster",
-    description: "Modern vertical design showcasing elegant jewelry collection.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int7.jpg",
-    title: "Gold Jwelry Collection Poster",
-    description: "Modern vertical design showcasing elegant gold jewelry collection.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int8.jpg",
-    title: "Kiran Jewellers Collection Poster",
-    description: "Modern vertical design showcasing Kiran Jewellers collection.",
-    tech: "Figma",
-  },
-  {
-    image: "/Designs/int9.jpg",
-    title: "Kiran Jewellers Collection Poster",
-    description: "Modern vertical design showcasing Kiran Jewellers collection.",
-    tech: "Figma",
-  },
-];
-
 const ProductDesign = () => {
-  const [showMore, setShowMore] = useState(false);
+  // 3. Add loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div id="designs" className="w-full">
+      {/* 5. Conditionally render the loader */}
+      {isLoading && <AnimatedLoader />}
+
       <main className="p-10 sm:p-20">
         <div className="flex justify-center items-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-center bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-500 bg-clip-text text-transparent leading-relaxed">
@@ -145,83 +94,14 @@ const ProductDesign = () => {
 
         {/* Show More Button */}
         <div className="flex justify-center mt-10">
-          <button
-            onClick={() => setShowMore(!showMore)}
+          <Link
+            href="/more-designs"
+            // 4. Add onClick handler to trigger the loader
+            onClick={() => setIsLoading(true)}
             className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer"
           >
-            {showMore ? "Show Less Designs" : "Show More Designs"}
-          </button>
-        </div>
-
-        {/* Collapsible Vertical (Portrait) Designs */}
-
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-10 transition-all duration-700 ease-in-out overflow-hidden ${showMore ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-        >
-          {VerticalDesigns.map((design, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-lg shadow-purple-400 overflow-hidden hover:shadow-2xl hover:shadow-purple-600 transition duration-300 cursor-pointer flex justify-center"
-            >
-              {/* Responsive vertical image */}
-              <div
-                className="relative w-full sm:w-[90%] md:w-[85%] lg:w-[90%] xl:w-[780px]"
-                style={{
-                  aspectRatio: "780 / 1200",
-                }}
-              >
-                <Image
-                  src={design.image}
-                  alt={design.title}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-
-              <div className="p-4 w-full sm:w-[90%] mx-auto">
-                <h2 className="text-lg font-semibold">{design.title}</h2>
-                <p className="text-gray-600 mt-1">{design.description}</p>
-                <p className="text-sm text-gray-500 mt-2">{design.tech}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-=======
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10 transition-all duration-700 ease-in-out overflow-hidden ${showMore ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-        >
-          {VerticalDesigns.map((design, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-lg shadow-purple-400 overflow-hidden hover:shadow-2xl hover:shadow-purple-600 transition duration-300 cursor-pointer"
-            >
-              {/* Fixed 780x1200 size */}
-              <div
-                className="relative w-full"
-                style={{
-                  aspectRatio: "780 / 1200",
-                  maxWidth: "780px",
-                  margin: "0 auto",
-                }}
-              >
-                <Image
-                  src={design.image}
-                  alt={design.title}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-
-              <div className="p-4">
-                <h2 className="text-lg font-semibold">{design.title}</h2>
-                <p className="text-gray-600 mt-1">{design.description}</p>
-                <p className="text-sm text-gray-500 mt-2">{design.tech}</p>
-              </div>
-            </div>
-          ))}
+            Show More Designs
+          </Link>
         </div>
       </main>
     </div>
