@@ -79,8 +79,7 @@ const VerticalDesigns = [
     description: "Modern vertical design for interior design promotion.",
     tech: "Figma",
   },
-<<<<<<< HEAD
-=======
+
   {
     image: "/Designs/int6.jpg",
     title: "Jwelry Collection Poster",
@@ -105,8 +104,6 @@ const VerticalDesigns = [
     description: "Modern vertical design showcasing Kiran Jewellers collection.",
     tech: "Figma",
   },
-
->>>>>>> 025fa25 (design page upadte)
 ];
 
 const ProductDesign = () => {
@@ -157,40 +154,39 @@ const ProductDesign = () => {
         </div>
 
         {/* Collapsible Vertical (Portrait) Designs */}
-<<<<<<< HEAD
-<div
-  className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-10 transition-all duration-700 ease-in-out overflow-hidden ${
-    showMore ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"
-  }`}
->
-  {VerticalDesigns.map((design, index) => (
-    <div
-      key={index}
-      className="bg-white rounded-2xl shadow-lg shadow-purple-400 overflow-hidden hover:shadow-2xl hover:shadow-purple-600 transition duration-300 cursor-pointer flex justify-center"
-    >
-      {/* Responsive vertical image */}
-      <div
-        className="relative w-full sm:w-[90%] md:w-[85%] lg:w-[90%] xl:w-[780px]"
-        style={{
-          aspectRatio: "780 / 1200",
-        }}
-      >
-        <Image
-          src={design.image}
-          alt={design.title}
-          fill
-          className="object-contain"
-        />
-      </div>
 
-      <div className="p-4 w-full sm:w-[90%] mx-auto">
-        <h2 className="text-lg font-semibold">{design.title}</h2>
-        <p className="text-gray-600 mt-1">{design.description}</p>
-        <p className="text-sm text-gray-500 mt-2">{design.tech}</p>
-      </div>
-    </div>
-  ))}
-</div>
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-10 transition-all duration-700 ease-in-out overflow-hidden ${showMore ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+        >
+          {VerticalDesigns.map((design, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-lg shadow-purple-400 overflow-hidden hover:shadow-2xl hover:shadow-purple-600 transition duration-300 cursor-pointer flex justify-center"
+            >
+              {/* Responsive vertical image */}
+              <div
+                className="relative w-full sm:w-[90%] md:w-[85%] lg:w-[90%] xl:w-[780px]"
+                style={{
+                  aspectRatio: "780 / 1200",
+                }}
+              >
+                <Image
+                  src={design.image}
+                  alt={design.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="p-4 w-full sm:w-[90%] mx-auto">
+                <h2 className="text-lg font-semibold">{design.title}</h2>
+                <p className="text-gray-600 mt-1">{design.description}</p>
+                <p className="text-sm text-gray-500 mt-2">{design.tech}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
 =======
         <div
@@ -227,7 +223,6 @@ const ProductDesign = () => {
             </div>
           ))}
         </div>
->>>>>>> 025fa25 (design page upadte)
       </main>
     </div>
   );
