@@ -79,6 +79,34 @@ const VerticalDesigns = [
     description: "Modern vertical design for interior design promotion.",
     tech: "Figma",
   },
+<<<<<<< HEAD
+=======
+  {
+    image: "/Designs/int6.jpg",
+    title: "Jwelry Collection Poster",
+    description: "Modern vertical design showcasing elegant jewelry collection.",
+    tech: "Figma",
+  },
+  {
+    image: "/Designs/int7.jpg",
+    title: "Gold Jwelry Collection Poster",
+    description: "Modern vertical design showcasing elegant gold jewelry collection.",
+    tech: "Figma",
+  },
+  {
+    image: "/Designs/int8.jpg",
+    title: "Kiran Jewellers Collection Poster",
+    description: "Modern vertical design showcasing Kiran Jewellers collection.",
+    tech: "Figma",
+  },
+  {
+    image: "/Designs/int9.jpg",
+    title: "Kiran Jewellers Collection Poster",
+    description: "Modern vertical design showcasing Kiran Jewellers collection.",
+    tech: "Figma",
+  },
+
+>>>>>>> 025fa25 (design page upadte)
 ];
 
 const ProductDesign = () => {
@@ -129,6 +157,7 @@ const ProductDesign = () => {
         </div>
 
         {/* Collapsible Vertical (Portrait) Designs */}
+<<<<<<< HEAD
 <div
   className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-10 transition-all duration-700 ease-in-out overflow-hidden ${
     showMore ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"
@@ -163,6 +192,42 @@ const ProductDesign = () => {
   ))}
 </div>
 
+=======
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10 transition-all duration-700 ease-in-out overflow-hidden ${showMore ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+        >
+          {VerticalDesigns.map((design, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-lg shadow-purple-400 overflow-hidden hover:shadow-2xl hover:shadow-purple-600 transition duration-300 cursor-pointer"
+            >
+              {/* Fixed 780x1200 size */}
+              <div
+                className="relative w-full"
+                style={{
+                  aspectRatio: "780 / 1200",
+                  maxWidth: "780px",
+                  margin: "0 auto",
+                }}
+              >
+                <Image
+                  src={design.image}
+                  alt={design.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="p-4">
+                <h2 className="text-lg font-semibold">{design.title}</h2>
+                <p className="text-gray-600 mt-1">{design.description}</p>
+                <p className="text-sm text-gray-500 mt-2">{design.tech}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+>>>>>>> 025fa25 (design page upadte)
       </main>
     </div>
   );
