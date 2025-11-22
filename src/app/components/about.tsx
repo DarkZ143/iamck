@@ -79,7 +79,7 @@ export default function About() {
 
         {/* Resume Download */}
         <a
-          href="/chandrakiran_resume.pdf"
+          href="/ckresume.pdf"
           download
           className="mt-6 inline-block px-6 py-3 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition-transform hover:brightness-110"
         >
