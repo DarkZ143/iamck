@@ -63,6 +63,18 @@ const VerticalDesigns = [
         description: "Modern vertical design showcasing Kiran Jewellers collection.",
         tech: "Figma",
     },
+    {
+        image: "/Designs/int10.jpeg",
+        title: "Kiran Jewellers Ad Poster",
+        description: "Stylish vertical layout for Kiran Jewellers advertisement.",
+        tech: "Figma",
+    },
+    {
+        image: "/Designs/int11.jpeg",
+        title: "Diamond Jwelry Collection Poster",
+        description:"Modern vertical design showcasing elegant diamond jewelry collection.",
+        tech: "Figma",
+    }
 ];
 
 const MoreDesignsPage = () => {
