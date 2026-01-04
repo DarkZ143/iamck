@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "../components/footer";
 import AnimatedLoader from "@/app/components/AnimatedLoader"; // 3. Import the loader
+import { image } from "framer-motion/client";
 
 // 👇 Vertical (portrait) posters (780x1200)
 const VerticalDesigns = [
@@ -72,7 +73,13 @@ const VerticalDesigns = [
     {
         image: "/Designs/int11.jpeg",
         title: "Diamond Jwelry Collection Poster",
-        description:"Modern vertical design showcasing elegant diamond jewelry collection.",
+        description: "Modern vertical design showcasing elegant diamond jewelry collection.",
+        tech: "Figma",
+    },
+    {
+        image: "/Designs/int12.png",
+        title: "Today Gold Rate Poster",
+        description: "Informative vertical design displaying today's gold rates.",
         tech: "Figma",
     }
 ];
@@ -95,7 +102,7 @@ const MoreDesignsPage = () => {
                             href="/#designs"
                             // 6. Add onClick to trigger the loader
                             onClick={() => setIsLoading(true)}
-                            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold shadow-md hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer"
+                            className="inline-flex items-center px-6 py-3 bg-linear-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold shadow-md hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +124,7 @@ const MoreDesignsPage = () => {
 
                     {/* Page Title */}
                     <div className="flex justify-center items-center">
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-center bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-500 bg-clip-text text-transparent leading-relaxed">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-center bg-linear-to-r from-blue-500 via-cyan-500 to-purple-500 bg-clip-text text-transparent leading-relaxed">
                             More Visual Designs
                         </h1>
                     </div>
