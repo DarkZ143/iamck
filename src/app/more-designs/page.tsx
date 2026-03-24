@@ -10,42 +10,7 @@ import { db } from "../../../firebaseConfig";
 
 // 👇 Static fallback designs
 const VerticalDesigns: DesignType[] = [
-    {
-        image: "/Designs/int1.jpg",
-        title: "Online Hotel Booking Poster",
-        description: "Modern vertical design for hotel booking promotion.",
-        tech: "Figma",
-    },
-    {
-        image: "/Designs/int2.jpg",
-        title: "Elegant Home Interior Poster",
-        description: "Sleek vertical layout for interior design services.",
-        tech: "Figma",
-    },
-    {
-        image: "/Designs/int3.jpg",
-        title: "Fruit Collection Poster",
-        description: "Vibrant vertical design showcasing fresh fruit collection.",
-        tech: "Figma",
-    },
-    {
-        image: "/Designs/int4.jpg",
-        title: "Interior Design Ad Poster",
-        description: "Stylish vertical layout for interior design services.",
-        tech: "Figma",
-    },
-    {
-        image: "/Designs/int5.jpg",
-        title: "Interior Design Promotion Poster",
-        description: "Modern vertical design for interior design promotion.",
-        tech: "Figma",
-    },
-    {
-        image: "/Designs/int6.jpg",
-        title: "Jewelry Collection Poster",
-        description: "Modern vertical design showcasing elegant jewelry collection.",
-        tech: "Figma",
-    },
+   
 ];
 
 // 🔹 Type safety (important for production)

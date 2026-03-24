@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Waterimage from "../../../public/water.jpg"
 import {
     addDoc,
     collection,
     serverTimestamp,
+    onSnapshot,
+    deleteDoc, doc, updateDoc,
 } from "firebase/firestore";
 import {
     onAuthStateChanged,
@@ -27,14 +30,52 @@ const AdminPage = () => {
         description: "",
         tech: "",
     });
+    const handleDelete = async (id: string) => {
+        await deleteDoc(doc(db, "designs", id));
+    };
+
+    const handleEdit = (design: any) => {
+        setForm({
+            image: design.image,
+            title: design.title,
+            description: design.description,
+            tech: design.tech,
+        });
+        setEditId(design.id);
+    };
+
+    const handleUpdate = async () => {
+        if (!editId) return;
+
+        await updateDoc(doc(db, "designs", editId), {
+            ...form,
+        });
+
+        setEditId(null);
+    };
 
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState("");
+    const [activeTab, setActiveTab] = useState("upload");
+    const [designs, setDesigns] = useState<any[]>([]);
+    const [editId, setEditId] = useState<string | null>(null);
 
     const ADMIN_EMAILS = [
         "chandrakiranck381@gmail.com",
         "rahulbhardwajthestar58@gmail.com",
     ];
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, "designs"), (snap) => {
+            const data = snap.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setDesigns(data);
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     // 🔐 AUTH CHECK
     useEffect(() => {
@@ -116,87 +157,119 @@ const AdminPage = () => {
     }
 
     return (
-        <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0f172a] p-6">
+        <div className="flex min-h-screen bg-[#0f172a] text-white">
 
-            {/* 🔥 BUBBLES */}
-            <div className="absolute inset-0 overflow-hidden">
-                {bubbles.map((b, i) => (
-                    <span
-                        key={i}
-                        className="absolute block bg-blue-400/20 rounded-full animate-bubble"
-                        style={{
-                            width: `${b.size}px`,
-                            height: `${b.size}px`,
-                            left: `${b.left}%`,
-                            animationDuration: `${b.duration}s`,
-                            animationDelay: `${b.delay}s`,
-                        }}
-                    />
-                ))}
-            </div>
-
-            {/* 🔓 Logout */}
-            <button
-                onClick={handleLogout}
-                className="absolute top-5 right-5 bg-red-500 text-white px-4 py-2 rounded-lg z-10"
-            >
-                Logout
-            </button>
-
-            {/* 🔥 GLASS PANEL */}
-            <div className="relative z-10 backdrop-blur-xl bg-white/10 border border-white/20 p-8 rounded-2xl shadow-2xl w-full max-w-md text-white">
-
-                <h1 className="text-2xl font-bold mb-6 text-center">
-                    Admin Panel 🚀
-                </h1>
-
-                <input
-                    type="text"
-                    name="image"
-                    placeholder="Paste Image URL"
-                    value={form.image}
-                    onChange={handleChange}
-                    className="w-full mb-3 p-3 rounded-lg bg-white/20 text-white placeholder-white/70"
-                />
-
-                <input
-                    type="text"
-                    name="title"
-                    placeholder="Title"
-                    value={form.title}
-                    onChange={handleChange}
-                    className="w-full mb-3 p-3 rounded-lg bg-white/20 text-white placeholder-white/70"
-                />
-
-                <input
-                    type="text"
-                    name="description"
-                    placeholder="Description"
-                    value={form.description}
-                    onChange={handleChange}
-                    className="w-full mb-3 p-3 rounded-lg bg-white/20 text-white placeholder-white/70"
-                />
-
-                <input
-                    type="text"
-                    name="tech"
-                    placeholder="Tech"
-                    value={form.tech}
-                    onChange={handleChange}
-                    className="w-full mb-5 p-3 rounded-lg bg-white/20 text-white placeholder-white/70"
-                />
+            {/* 🔥 SIDEBAR */}
+            <div className="w-64 bg-blue-500/10 backdrop-blur border-r border-white/10 p-6">
+                <h2 className="text-xl font-bold mb-6">Admin</h2>
 
                 <button
-                    onClick={handleSubmit}
-                    disabled={loading}
-                    className="w-full bg-linear-to-r from-blue-500 to-purple-500 py-3 rounded-lg font-semibold hover:scale-105 transition-all"
+                    onClick={() => setActiveTab("upload")}
+                    className="block w-full text-left mb-3 hover:text-blue-400"
                 >
-                    {loading ? "Uploading..." : "Upload Design"}
+                    ➕ Upload Design
                 </button>
 
-                {success && (
-                    <p className="text-green-400 text-center mt-4">{success}</p>
+                <button
+                    onClick={() => setActiveTab("manage")}
+                    className="block w-full text-left mb-3 hover:text-blue-400"
+                >
+                    📂 Manage Designs
+                </button>
+
+                <button
+                    onClick={handleLogout}
+                    className="mt-10 text-red-400"
+                >
+                    🚪 Logout
+                </button>
+            </div>
+
+            {/* 🔥 MAIN PANEL */}
+            <div
+                className="flex-1 p-10 bg-cover bg-center bg-no-repeat justify-center items-center flex"
+                style={{
+                    backgroundImage:
+                        "url('/water.jpg')",
+                }}
+            >
+
+                {/* UPLOAD TAB */}
+                {activeTab === "upload" && (
+                    <div className="max-w-md bg-blue-500/20 p-6 rounded-xl backdrop-blur">
+                        <h2 className="text-xl mb-4">
+                            {editId ? "Edit Design" : "Upload Design"}
+                        </h2>
+
+                        <input
+                            name="image"
+                            placeholder="Image URL"
+                            value={form.image}
+                            onChange={handleChange}
+                            className="w-full mb-3 p-3 rounded bg-white/20"
+                        />
+
+                        <input
+                            name="title"
+                            placeholder="Title"
+                            value={form.title}
+                            onChange={handleChange}
+                            className="w-full mb-3 p-3 rounded bg-white/20"
+                        />
+
+                        <input
+                            name="description"
+                            placeholder="Description"
+                            value={form.description}
+                            onChange={handleChange}
+                            className="w-full mb-3 p-3 rounded bg-white/20"
+                        />
+
+                        <input
+                            name="tech"
+                            placeholder="Tech"
+                            value={form.tech}
+                            onChange={handleChange}
+                            className="w-full mb-4 p-3 rounded bg-white/20"
+                        />
+
+                        <button
+                            onClick={editId ? handleUpdate : handleSubmit}
+                            className="w-full bg-blue-500 py-2 rounded cursor-pointer hover:bg-blue-600 transition"
+                        >
+                            {editId ? "Update" : "Upload"}
+                        </button>
+                    </div>
                 )}
+
+                {/* MANAGE TAB */}
+                {activeTab === "manage" && (
+                    <div className="grid grid-cols-3 gap-6">
+                        {designs.map((d) => (
+                            <div key={d.id} className="bg-white/10 p-4 rounded-xl">
+                                <img src={d.image} className="rounded mb-2" />
+                                <h3>{d.title}</h3>
+
+                                <div className="flex gap-2 mt-2">
+                                    <button
+                                        onClick={() => handleEdit(d)}
+                                        className="bg-yellow-500 px-2 py-1 rounded"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        onClick={() => handleDelete(d.id)}
+                                        className="bg-red-500 px-2 py-1 rounded"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
             </div>
         </div>
     );

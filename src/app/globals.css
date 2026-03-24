@@ -26,9 +26,7 @@
   transform: perspective(600px) rotateX(8deg) rotateY(8deg) scale(1.05);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 
 
 @keyframes bubble {
