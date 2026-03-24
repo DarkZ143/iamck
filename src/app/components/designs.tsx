@@ -62,7 +62,7 @@ const ProductDesign = () => {
 
       <main className="p-10 sm:p-20">
         <div className="flex justify-center items-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-center bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-500 bg-clip-text text-transparent leading-relaxed">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-center bg-linear-to-r from-blue-500 via-cyan-500 to-purple-500 bg-clip-text text-transparent leading-relaxed">
             My Visual Designs
           </h1>
         </div>
@@ -98,7 +98,7 @@ const ProductDesign = () => {
             href="/more-designs"
             // 4. Add onClick handler to trigger the loader
             onClick={() => setIsLoading(true)}
-            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer"
+            className="px-6 py-3 bg-linear-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 cursor-pointer"
           >
             Show More Designs
           </Link>

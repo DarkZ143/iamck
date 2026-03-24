@@ -9,10 +9,10 @@ export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden border-t border-cyan-400/30 text-white">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 -z-20 animate-gradient-xy bg-[radial-gradient(circle_at_bottom_right,_#1a1a2e,_#16213e,_#0f3460,_#0072ff)] bg-[length:300%_300%]" />
+      <div className="absolute inset-0 -z-20 animate-gradient-xy bg-[radial-gradient(circle_at_bottom_right,#1a1a2e,#16213e,#0f3460,#0072ff)] bg-size-[300%_300%]" />
 
       {/* Subtle grid overlay */}
-      <div className="absolute inset-0 -z-10 opacity-20 bg-[linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      <div className="absolute inset-0 -z-10 opacity-20 bg-[linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] bg-size-[50px_50px]" />
 
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
         {/* Left: Logo + tagline */}
@@ -37,6 +37,7 @@ export default function Footer() {
             <Link href="#about" className="hover:text-orange-400 transition">About</Link>
             <Link href="#designs" className="hover:text-orange-400 transition">Designs</Link>
             <Link href="#contact" className="hover:text-orange-400 transition">Contact</Link>
+              <Link href="/admin/login" className="hover:text-orange-400 transition">Admin</Link>
           </div>
         </div>
 
